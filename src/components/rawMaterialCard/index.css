@@ -1,0 +1,48 @@
+.raw-material-card {
+    border: rgb(215, 215, 215) solid 2px;
+    font-family: 'Roboto';
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 10px;
+    border-radius: 50px;
+}
+
+.card-header {
+    padding: 0 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+    justify-content: center;
+    justify-content: space-between;
+}
+
+.rm-label {
+    h3 {
+        margin: 0;
+        font-size: 1rem;
+    }
+
+    p {
+        margin-top: 0;
+        font-size: 1rem;
+        font-weight: 100;
+        max-width: 100px;
+    }
+}
+
+.card-footer {
+    padding: 0 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    button {
+        width: 100px;
+    }
+}
+
+.delete-button {
+    background-color: #cc0000;
+    color: white;
+}

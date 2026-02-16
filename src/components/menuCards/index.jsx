@@ -6,7 +6,7 @@ export default function MenuCards(props) {
             <div className="card-grid">
                 <div className="item">
                     <h3>
-                        Porudct
+                        Product
                     </h3>
                     <p>
                         {props.title}
@@ -15,7 +15,7 @@ export default function MenuCards(props) {
 
                 <div className="item">
                     <h3>
-                        Possible Procution
+                        Possible Production
                     </h3>
                     <p>
                         {props.possibleProduction}

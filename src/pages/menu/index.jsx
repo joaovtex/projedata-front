@@ -1,6 +1,5 @@
 import './index.css'
-import { useNavigate } from 'react-router-dom';
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getProduction } from '../../api/productionService';
 import MenuButton from '../../components/menuButton';
 import menuButtonElements from '../../components/menuButton/componentElements';
@@ -8,7 +7,6 @@ import MenuCards from '../../components/menuCards';
 
 export default function Menu() {
     const [production, setProduction] = useState([]);
-    const navigate = useNavigate();
 
     useEffect(() => {
         loadProduction();
@@ -19,8 +17,8 @@ export default function Menu() {
             const response = await getProduction();
             setProduction(response.data);
         } catch (error) {
-            console.error("Error fetching production data:", error);
-        }
+            console.error("Failed to load production data:", error);
+        } 
     }
 
     function formatPrice(value) {
@@ -40,6 +38,7 @@ export default function Menu() {
                     <MenuButton
                         key={index}
                         text={button.text}
+                        link={button.path}
                     />
                 ))}
             </div>
@@ -50,10 +49,14 @@ export default function Menu() {
                 </h3>
             </div>
 
+            {production.length === 0 && (
+                <p className="texts">No products can be manufactured with current stock.</p>
+            )}
+
             <div className="menu-cards">
                 {production.map((product) => (
                     <MenuCards
-                        key={product.id}
+                        key={product.productId}
                         title={product.productName}
                         possibleProduction={product.possibleQuantity}
                         unitPrice={formatPrice(product.unitValue)}

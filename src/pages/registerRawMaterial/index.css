@@ -1,0 +1,50 @@
+.new-raw-material-container {
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
+  font-family: 'Roboto';
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.submit-button {
+  background-color: #379902;
+  color: white;
+}
+
+.submit-button:hover {
+  background-color: #2e7a02;
+}
+
+.cancel-button {
+  background-color: #ccc;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
