@@ -1,0 +1,46 @@
+.menu-card {
+    background-color: #055e00;
+    color: white;
+    padding: 5% 50px;
+    max-width: 300px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto';
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 30px;
+    row-gap: 15px;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+        margin: 0;
+        font-size: 1rem;
+        max-width: 80px;
+    }
+    
+    p {
+        margin: 0;
+        font-weight: 100;
+        font-size: 1rem;
+        max-width: 80px;
+    }
+}
+
+@media (min-width: 768px) {
+    .menu-card {
+        padding: 3% 50px;
+    }
+
+    .card-grid {
+        row-gap: 20px;
+    }
+}
