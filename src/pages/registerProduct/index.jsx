@@ -1,25 +1,22 @@
 import './index.css'
-import { useEffect, useEffectEvent, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createProduct } from '../../api/productService'
-import { createProductRawMaterial } from '../../api/productRawMaterialService'
+import { createProductRawMaterial, deleteProductRawMaterial } from '../../api/productRawMaterialService'
 import { getRawMaterials } from '../../api/rawMaterialService'
 import { useNavigate } from 'react-router-dom'
 
 export default function RegisterProduct() {
     const navigate = useNavigate()
 
-    // product state
     const [name, setName] = useState("")
     const [value, setValue] = useState(0)
     const [productId, setProductId] = useState(null)
 
-    // association state
     const [rawMaterials, setRawMaterials] = useState([])
     const [selectedRawMaterials, setSelectedRawMaterials] = useState("")
     const [requiredQuantity, setRequiredQuantity] = useState(0)
     const [associations, setAssociations] = useState([])
 
-    // load raw materials after product is created
     useEffect(() => {
         if (productId) {
             loadRawMaterials()
@@ -36,14 +33,8 @@ export default function RegisterProduct() {
         }
     }
 
-    // create product
     const handleCreateProduct = async (e) => {
         e.preventDefault()
-
-        if (!name.trim() || value <= 0) {
-            alert("Please enter a valid name and value for the product.")
-            return
-        }
 
         try {
             const response = await createProduct({ name, value })
@@ -51,11 +42,12 @@ export default function RegisterProduct() {
             alert("Product created successfully! Now you can add raw materials.")
         } catch (error) {
             console.error("Error creating product:", error)
-            alert("Failed to create product. Please try again.")
+
+            const apiMessage = error.response?.data?.message
+            alert(apiMessage || "Failed to create product. Please try again.")
         }
     }
 
-    // add association
     const handleAddAssociation = async () => {
         if (!selectedRawMaterials || requiredQuantity <= 0) {
             alert("Please select a raw material and enter a valid quantity.")
@@ -63,7 +55,7 @@ export default function RegisterProduct() {
         }
 
         try {
-            await createProductRawMaterial({
+            const response = await createProductRawMaterial({
                 productId: Number(productId),
                 rawMaterialId: Number(selectedRawMaterials),
                 requiredQuantity: Number(requiredQuantity)
@@ -77,7 +69,8 @@ export default function RegisterProduct() {
             setAssociations([
                 ...associations,
                 {
-                    id: selectedRawMaterial.id,
+                    id: response.data.id,
+                    rawMaterialId: selectedRawMaterial.id,
                     name: selectedRawMaterial.name,
                     requiredQuantity
                 },
@@ -90,6 +83,31 @@ export default function RegisterProduct() {
             setRequiredQuantity(0)
         } catch (error) {
             alert("Failed to add raw material association. Please try again.")
+        }
+    }
+
+    const handleDeleteAssociation = async (associationId) => {
+        try {
+            await deleteProductRawMaterial(associationId)
+
+            const associationToRemove = associations.find(
+                (assoc) => assoc.id === associationId
+            )
+
+            setAssociations(
+                associations.filter((assoc) => assoc.id !== associationId)
+            )
+
+            const removedRawMaterial = {
+                id: associationToRemove.rawMaterialId,
+                name: associationToRemove.name
+            }
+
+            setRawMaterials([...rawMaterials, removedRawMaterial])
+
+        } catch (error) {
+            console.error(error)
+            alert("Failed to delete association.")
         }
     }
 
@@ -165,16 +183,22 @@ export default function RegisterProduct() {
                     <h3>Associated Raw Materials</h3>
 
                     {associations.map((assoc) => (
-                        <div
-                            className="associated-raw-material"
-                            key={assoc.id}>
-                            <p>
-                                {assoc.name}
-                            </p>
-                            
-                            <p>
-                                {assoc.requiredQuantity} units
-                            </p>
+                        <div className="associated-raw-material-line">
+                            <div
+                                className="associated-raw-material"
+                                key={assoc.id}
+                            >
+                                <p>{assoc.name}</p>
+
+                                <p>{assoc.requiredQuantity} units</p>
+                            </div>
+
+                            <button
+                                className="delete-association-button"
+                                onClick={() => handleDeleteAssociation(assoc.id)}
+                            >
+                                Remove
+                            </button>
                         </div>
                     ))}
 

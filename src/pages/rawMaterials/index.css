@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   width: 300px;
-  
+  font-family: 'Roboto';
 }
 
 h1 {
@@ -15,7 +15,7 @@ h1 {
   align-self: flex-start;
 }
 
-.raw-materials-list {
+.list-content {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -26,7 +26,7 @@ h1 {
     width: 670px;
   }
 
-  .raw-materials-list {
+  .list-content {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
@@ -42,7 +42,7 @@ h1 {
     width: 1000px;
   }
 
-  .raw-materials-list {
+  .list-content {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;

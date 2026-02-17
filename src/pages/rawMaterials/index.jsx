@@ -2,7 +2,7 @@ import './index.css'
 import { useEffect, useState } from 'react'
 import { getRawMaterials, deleteRawMaterial } from '../../api/rawMaterialService';
 import { useNavigate } from 'react-router-dom';
-import RawMaterialCard from '../../components/rawMaterialCard';
+import ListCard from '../../components/listCard';
 
 export default function RawMaterials() {
     const [rawMaterials, setRawMaterials] = useState([]);
@@ -44,9 +44,9 @@ export default function RawMaterials() {
 
             <h1>Raw Materials</h1>
 
-            <div className="raw-materials-list">
+            <div className="list-content">
                 {rawMaterials.map((rm) => (
-                    <RawMaterialCard
+                    <ListCard
                         key={rm.id}
                         id={rm.id}
                         name={rm.name}
@@ -58,7 +58,7 @@ export default function RawMaterials() {
             </div>
 
             {rawMaterials.length === 0 && (
-                <p>No raw materials available.</p>
+                <p className="empty-warning">No raw materials available.</p>
             )}
         </div>
     )

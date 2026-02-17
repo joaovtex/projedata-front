@@ -11,16 +11,6 @@ export default function RegisterRawMaterial() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!name.trim()) {
-            alert('Please enter a valid name.');
-            return;
-        }
-
-        if (stockQuantity < 0) {
-            alert('Stock quantity cannot be negative.');
-            return;
-        }
-
         try {
             await createRawMaterial({ name, stockQuantity });
             alert('Raw material registered successfully!');
@@ -28,7 +18,9 @@ export default function RegisterRawMaterial() {
             setStockQuantity(0);
         } catch (error) {
             console.error('Error registering raw material:', error);
-            alert('Failed to register raw material. Please try again.');
+
+            const apiMessage = error.response?.data?.message
+            alert(apiMessage || 'Failed to register raw material. Please try again.');
         }
     }
 

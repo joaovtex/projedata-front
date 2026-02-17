@@ -28,28 +28,24 @@ export default function EditRawMaterial() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!name.trim()) {
-            alert('Please enter a valid name.');
-            return;
-        }
-
-        if (stockQuantity < 0) {
-            alert('Stock quantity cannot be negative.');
-            return;
-        }
-
         try {
             await updateRawMaterial(id, { name, stockQuantity });
             alert('Raw material updated successfully!');
             navigate(-1);
         } catch (error) {
             console.error('Error updating raw material:', error);
-            alert('Failed to update raw material.');
+
+            const apiMessage = error.response?.data?.message
+            alert(apiMessage || 'Failed to update raw material.');
         }
     };
 
     return (
         <div className="new-raw-material-container">
+            <button className="back-button" onClick={() => navigate(-1)}>
+                Back
+            </button>
+
             <h1>Edit Raw Material</h1>
 
             <form onSubmit={handleSubmit} className="form">
@@ -74,14 +70,6 @@ export default function EditRawMaterial() {
                 <div className="buttons">
                     <button type="submit" className="submit-button">
                         Save Changes
-                    </button>
-
-                    <button
-                        type="button"
-                        className="cancel-button"
-                        onClick={() => navigate(-1)}
-                    >
-                        Cancel
                     </button>
                 </div>
             </form>

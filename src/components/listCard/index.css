@@ -1,4 +1,4 @@
-.raw-material-card {
+.list-card {
     border: rgb(215, 215, 215) solid 2px;
     font-family: 'Roboto';
     display: flex;
@@ -17,7 +17,7 @@
     justify-content: space-between;
 }
 
-.rm-label {
+.card-label {
     h3 {
         margin: 0;
         font-size: 1rem;

@@ -18,7 +18,7 @@ export default function Menu() {
             setProduction(response.data);
         } catch (error) {
             console.error("Failed to load production data:", error);
-        } 
+        }
     }
 
     function formatPrice(value) {
@@ -49,10 +49,6 @@ export default function Menu() {
                 </h3>
             </div>
 
-            {production.length === 0 && (
-                <p className="texts">No products can be manufactured with current stock.</p>
-            )}
-
             <div className="menu-cards">
                 {production.map((product) => (
                     <MenuCards
@@ -64,6 +60,10 @@ export default function Menu() {
                     />
                 ))}
             </div>
+
+            {production.length === 0 && (
+                <p className="empty-warning">No products can be manufactured with current stock.</p>
+            )}
 
         </div>
     );

@@ -4,6 +4,10 @@ export const getProductRawMaterials = () => {
     return api.get("/product-raw-material");
 }
 
+export const getProductRawMaterialsByProductId = (id) => {
+    return api.get(`/product-raw-material/product=${id}`);
+}
+
 export const createProductRawMaterial = (data) => {
     return api.post("/product-raw-material/new", data);
 }

@@ -39,6 +39,13 @@
     color: white;
 }
 
+.associated-raw-material-line {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 5px;
+}
+
 .associated-raw-material {
     display: flex;
     justify-content: space-between;
@@ -47,11 +54,20 @@
     border-radius: 10px;
     margin-bottom: 10px;
     font-weight: 100;
+    width: 100%;
 
     p {
         padding: 5px 10px;
         margin: 0;
     }
+}
+
+.delete-association-button {
+    background-color: #cc0000;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 .finish-button {
