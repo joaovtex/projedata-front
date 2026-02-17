@@ -7,7 +7,6 @@
 }
 
 h1 {
-    width: 300px;
     font-family: 'Roboto';
 }
 
@@ -32,9 +31,7 @@ h1 {
     justify-content: center;
   }
 
-  h1 {
-    width: 650px;
-  }
+
 }
 
 @media (min-width: 1280px) {
@@ -49,7 +46,4 @@ h1 {
     max-width: 1200px;
   }
 
-  h1 {
-    width: 1000px;
-  }
 }

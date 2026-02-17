@@ -5,16 +5,18 @@ import { useNavigate } from 'react-router-dom';
 import ListCard from '../../components/listCard';
 
 export default function RawMaterials() {
-    const [rawMaterials, setRawMaterials] = useState([]);
     const navigate = useNavigate();
+
+    const [rawMaterials, setRawMaterials] = useState([]);
+    const [sortOption, setSortOption] = useState('name,asc')
 
     useEffect(() => {
         loadRawMaterials();
-    }, []);
+    }, [sortOption]);
 
     const loadRawMaterials = async () => {
         try {
-            const response = await getRawMaterials();
+            const response = await getRawMaterials({ sort: sortOption });
             setRawMaterials(response.data);
         } catch (error) {
             console.error('Error fetching raw materials:', error);
@@ -42,7 +44,24 @@ export default function RawMaterials() {
                 Back
             </button>
 
-            <h1>Raw Materials</h1>
+            <div className="list-header">
+                <h1>Raw Materials</h1>
+
+                <div className="filter-container">
+                    <label>Order by: </label>
+                    <select
+                        className="selector"
+                        value={sortOption}
+                        onChange={(e) => setSortOption(e.target.value)}
+                    >
+                        <option value="name,asc">Alphabetical (A → Z)</option>
+                        <option value="name,desc">Alphabetical (Z → A)</option>
+                        <option value="stockQuantity,asc">Stock Quantity (Low → High)</option>
+                        <option value="stockQuantity,desc">Stock Quantity (High → Low)</option>
+                    </select>
+                </div>
+            </div>
+
 
             <div className="list-content">
                 {rawMaterials.map((rm) => (

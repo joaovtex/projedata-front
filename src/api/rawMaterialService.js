@@ -1,7 +1,7 @@
 import api from './axiosConfig';
 
-export const getRawMaterials = () => {
-    return api.get("/raw-materials");
+export const getRawMaterials = (params = {}) => {
+    return api.get("/raw-materials", {params});
 }
 
 export const getRawMaterialById = (id) => {

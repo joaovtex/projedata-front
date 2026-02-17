@@ -187,7 +187,7 @@ export default function EditProduct() {
                 <div className="select-raw-materials">
                     <div className="inputs">
                         <select
-                            className="selector-raw-materials"
+                            className="selector"
                             value={selectedRawMaterials}
                             onChange={(e) => setSelectedRawMaterials(e.target.value)}
                         >

@@ -8,14 +8,15 @@ export default function Products() {
     const navigate = useNavigate()
 
     const [products, setProducts] = useState([])
+    const [sortOption, setSortOption] = useState("name,asc")
 
     useEffect(() => {
         loadProducts()
-    }, [])
+    }, [sortOption])
 
     const loadProducts = async () => {
         try {
-            const response = await getProducts()
+            const response = await getProducts({ sort: sortOption })
             setProducts(response.data)
         } catch (error) {
             console.error('Error fetching products:', error);
@@ -49,7 +50,24 @@ export default function Products() {
                 Back
             </button>
 
-            <h1>Products</h1>
+            <div className="list-header">
+                <h1>Products</h1>
+
+                <div className="filter-container">
+                    <label>Order by: </label>
+                    <select
+                        className="selector"
+                        value={sortOption}
+                        onChange={(e) => setSortOption(e.target.value)}
+                    >
+                        <option value="name,asc">Alphabetical (A → Z)</option>
+                        <option value="name,desc">Alphabetical (Z → A)</option>
+                        <option value="value,asc">Price (Low → High)</option>
+                        <option value="value,desc">Price (High → Low)</option>
+                    </select>
+                </div>
+            </div>
+
 
             <div className="list-content">
                 {products.map((p) => (
