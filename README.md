@@ -1,16 +1,31 @@
-# React + Vite
+Olá! Este é o repositório da interface web do sistema de controle de estoque e produção, desafio FullStack Jr da Projedata. O foco principal deste projeto foi criar uma experiência de usuário fluida, priorizando a visualização clara dos produtos que trazem maior retorno financeiro para a indústria.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## TÉCNOLOGIAS UTILIZADAS
+- React.js (via Vite)
+- JavaScript
+- Axios
+- CSS
+- Jest
 
-Currently, two official plugins are available:
+## ARQUITETURA DO PROJETO
+A aplicação foi estruturada de forma modular para facilitar a manutenção e escalabilidade:
+- Pages: Telas principais
+- Components: Elementos reutilizáveis
+- Routes: Para setar rotas
+- API: Confuguração de API e Services
+- Test: configuração de testes
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Responsividade e UI/UX
+A aplicação foi pensada no modelo Mobile-First
 
-## React Compiler
+Todo o layout foi construído utilizando CSS puro.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Validações de formulários e retornos da API são comunicados via alertas, garantindo que o usuário saiba exatamente o resultado de suas ações.
 
-## Expanding the ESLint configuration
+## FUNCIONALIDADES IMPLEMENTADAS 
+- Gestão de Estoque: CRUD completo das matérias-primas com controle de estoque.
+- Engenharia de Produto: Interface para associar matérias-primas a produtos, incluindo quantidade necessária para produção.
+- Sugestão de Produção: Listagem de quais produtos podem ser fabricados com o estoque atual, priorizando maior valor do produto e exibindo lucro total estimado.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## TESTES
+Foram feitos testes unitários para os componentes presentes no projeto.
