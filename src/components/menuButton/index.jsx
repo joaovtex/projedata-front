@@ -1,7 +1,7 @@
 import './index.css';
 import { useNavigate } from 'react-router-dom';
 
-export default function MenuButton(props, onClick) {
+export default function MenuButton(props) {
   const navigate = useNavigate();
 
   return (

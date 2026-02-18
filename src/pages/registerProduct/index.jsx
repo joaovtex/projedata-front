@@ -145,8 +145,6 @@ export default function RegisterProduct() {
                         </button>
                     </div>
                 )}
-
-
             </form>
 
             {/* ASSOCIATION SECTION */}
